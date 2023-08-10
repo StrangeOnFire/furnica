@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createBrowserRouter,RouterProvider} from "react-router-dom";
+import Header from './fragments/Header';
+import {ItemDetailsArray, ProductsHomepageArray} from './fragments/ProductsHomepageArray';
+import BuyNow from './fragments/BuyNow';
+
+
+
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Header/>,
+    children:[
+      {
+        index:true,
+        element:<App/>
+      },...ProductsHomepageArray,...ItemDetailsArray,
+      
+      
+    ]
+  },
+  
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <RouterProvider router={router} />
   </React.StrictMode>
 );
 
